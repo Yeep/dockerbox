@@ -1,0 +1,18 @@
+version: '2.0'
+services:
+  landing:
+    build: landing
+    ports:
+    - "8080:80"
+  sql_injection:
+    build: sql_injection
+    ports:
+    - "81:80"
+  obvious_password:
+    build: obvious_password
+    ports:
+    - "82:80"
+  api:
+    build: api
+    ports:
+    - "69:80" # Remove this port in production
