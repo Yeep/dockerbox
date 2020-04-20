@@ -1,4 +1,4 @@
-version: '2.0'
+version: '3.4'
 services:
   landing:
     build: landing
@@ -8,11 +8,28 @@ services:
     build: sql_injection
     ports:
     - "81:80"
+    secrets:
+    - source: sql_injection_id
+      target: task_id
   obvious_password:
     build: obvious_password
     ports:
     - "82:80"
+    secrets:
+    - source: obvious_password_id
+      target: task_id
   api:
     build: api
     ports:
     - "69:80" # Remove this port in production
+    secrets:
+    - sql_injection_id
+    - obvious_password_id
+secrets:
+  sql_injection_id:
+    file: sql_injection/secret_id
+  obvious_password_id:
+    file: obvious_password/secret_id
+#761c17df-5f22-4043-9682-bbeff0bf4f1e
+#911d846e-3bc1-4019-a02f-fd8fe509ae5e
+#732cd3f2-410d-4276-b623-0f0a4a75532f

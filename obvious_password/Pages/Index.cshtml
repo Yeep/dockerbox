@@ -1,0 +1,17 @@
+@page
+@model IndexModel
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<section class="jumbotron text-center">
+    @if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+    {
+        <h1 class="jumbotron-heading">Hello @HttpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value!</h1>
+        <p class="lead text-muted">Username: @HttpContextAccessor.HttpContext.User.Identity.Name</p>
+    }
+
+    <p>The time on the server is @DateTime.Now</p>
+</section>
