@@ -22,14 +22,25 @@ services:
     build: api
     ports:
     - "69:80" # Remove this port in production
+    expose:
+    - "80"
     secrets:
     - sql_injection_id
     - obvious_password_id
+    - task_3
+    - task_4
+    - task_5
+    - tasks
 secrets:
+  tasks:
+    file: tasks.json
   sql_injection_id:
     file: sql_injection/secret_id
   obvious_password_id:
     file: obvious_password/secret_id
-#761c17df-5f22-4043-9682-bbeff0bf4f1e
-#911d846e-3bc1-4019-a02f-fd8fe509ae5e
-#732cd3f2-410d-4276-b623-0f0a4a75532f
+  task_3:
+    file: task3_id
+  task_4:
+    file: task4_id
+  task_5:
+    file: task5_id

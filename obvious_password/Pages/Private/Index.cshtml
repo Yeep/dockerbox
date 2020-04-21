@@ -1,6 +1,10 @@
 @page
+@model PrivateIndexModel
 
 <section class="jumbotron text-center">
     <h1 class="jumbotron-heading">Hello, private world!</h1>
     <p>The time on the server is @DateTime.Now</p>
+    <form asp-controller="Private" asp-action="Index" method="post" id="completeForm">
+        <button type="submit" class="btn btn-default" style="padding:0">Complete Task</button>
+    </form>
 </section>
