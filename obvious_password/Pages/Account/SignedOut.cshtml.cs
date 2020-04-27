@@ -3,16 +3,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace obvious_password.Pages.Account
 {
-    public class SignedOutModel : PageModel
-    {
-        public IActionResult OnGet()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToPage("/Index");
-            }
+	public class SignedOutModel : PageModel
+	{
+		public IActionResult OnGet()
+		{
+			if (User.Identity.IsAuthenticated)
+			{
+				return RedirectToPage("/Index");
+			}
 
-            return Page();
-        }
-    }
+			return Page();
+		}
+	}
 }

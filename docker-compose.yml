@@ -1,25 +1,60 @@
 version: '3.4'
+
 services:
   landing:
-    build: landing
+    build: 
+      context: landing
     ports:
     - "8080:80"
+  
   sql_injection:
-    build: sql_injection
+    build: 
+      context: sql_injection
     ports:
     - "81:80"
     secrets:
     - source: sql_injection_id
       target: task_id
+  
+  sql_injection_db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+    - "ACCEPT_EULA=Y"
+    - "SA_PASSWORD=Toshiba8"
+    - "MSSQL_PID=Express"
+    expose: 
+    - "1433"
+  
   obvious_password:
-    build: obvious_password
+    build: 
+      context: obvious_password
     ports:
     - "82:80"
     secrets:
     - source: obvious_password_id
       target: task_id
+  
+  password_reset:
+    build: 
+      context: password_reset
+    ports:
+    - "84:80"
+    secrets:
+    - source: password_reset_id
+      target: task_id
+
+  directory_traversal:
+    build: 
+      context: directory_traversal
+    ports:
+    - "83:80"
+    secrets:
+    - source: directory_traversal_id
+      target: task_id
+  
   api:
-    build: api
+    build: 
+      context: api
     ports:
     - "69:80" # Remove this port in production
     expose:
@@ -27,10 +62,11 @@ services:
     secrets:
     - sql_injection_id
     - obvious_password_id
-    - task_3
-    - task_4
+    - directory_traversal_id
+    - password_reset_id
     - task_5
     - tasks
+
 secrets:
   tasks:
     file: tasks.json
@@ -38,9 +74,9 @@ secrets:
     file: sql_injection/secret_id
   obvious_password_id:
     file: obvious_password/secret_id
-  task_3:
-    file: task3_id
-  task_4:
-    file: task4_id
+  directory_traversal_id:
+    file: directory_traversal/secret_id
+  password_reset_id:
+    file: password_reset/secret_id
   task_5:
     file: task5_id

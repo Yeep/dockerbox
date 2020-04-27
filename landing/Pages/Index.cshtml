@@ -1,5 +1,8 @@
 @page
 @model IndexModel
+@{
+    ViewData["Title"] = "Puzzle Box";
+}
 
 <div class="album py-5">
     <div class="container">
@@ -27,7 +30,7 @@
                                 <span class="text-muted">incomplete</span>
                             }
                         </small>
-                        <a class="btn btn-default" href="@task.Address">Go!</a>
+                        <a class="btn btn-default" href="@task.Address" target="_blank">Go!</a>
                     </div>
                 </div>
             }
